@@ -1,0 +1,43 @@
+[tool.poetry]
+name = "src"
+version = "0.1.0"
+description = ""
+authors = ["iusztinpaul <p.b.iusztin@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+bytewax = "^0.18.1"
+pydantic = "^2.5.3"
+transformers = "^4.33.1"
+torch = "2.0.1"
+qdrant-client = "^1.7.1"
+unstructured = "^0.12.2"
+langchain = "^0.1.1"
+python-dotenv = "^1.0.0"
+sentence-transformers = "^2.2.2"
+pillow = "^10.2.0"
+umap-learn = "^0.5.5"
+matplotlib = "^3.8.2"
+tqdm = "^4.66.1"
+pydantic-settings = "^2.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+ipykernel = "^6.29.0"
+
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
+
+[[tool.poetry.source]]
+name = "torch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "supplemental"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
