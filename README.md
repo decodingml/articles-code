@@ -33,3 +33,7 @@ The articles are tagged and divided based on their main domain, such as `llms`, 
 
 > [!IMPORTANT]  
 > Every article is an independent repository that can be run as a standalone application. 
+
+## License
+
+All the articles within this repository are open-source projects released under the MIT license. Thus, as long you distribute our LICENSE and acknowledge our work, you can safely clone or fork any project and use it as a source of inspiration for whatever you want (e.g., work, university projects, college degree projects, etc.).
