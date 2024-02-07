@@ -81,7 +81,8 @@ This article is an open-source project released under the MIT license. Thus, as 
   <tr>
     <td><img src="https://github.com/iusztinpaul.png" width="100" style="border-radius:50%;"/></td>
     <td>
-      <strong>Paul Iusztin | Senior ML & MLOps Engineer </strong>
+      <strong>Paul Iusztin</strong><br />
+      <i>Senior ML & MLOps Engineer</i>
     </td>
   </tr>
 </table>
