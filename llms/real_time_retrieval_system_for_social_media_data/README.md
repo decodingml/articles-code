@@ -16,8 +16,23 @@ In this article, we will explain only the retrieval part of an RAG system. Still
 - use the rerank pattern to improve the retrieval accuracy
 - visualize the retrieval for a given query in a 2D plot using UMAP
 
-> [!Note]
-> [-> Check out the full article here.](https://)
+## Table of Contents
+
+- [Articles](#articles)
+- [Dependencies](#dependencies)
+- [Install](#install)
+- [Usage](#usage)
+- [License](#license)
+- [Contributors](#contributors)
+
+------
+
+## Articles
+
+To fully grasp the code, check out our articles ↓
+
+1. [Summary]()
+2. [Full Article]()
 
 ## Dependencies
 
@@ -25,7 +40,7 @@ In this article, we will explain only the retrieval part of an RAG system. Still
 - [GNU Make (version 3.81)](https://www.gnu.org/software/make/)
 - [Docker (version 24.0.7)](https://www.docker.com/) or [Qdrant](https://qdrant.tech/)
 
-> [!Note] 
+> [!IMPORTANT] 
 > We also support running Qdrant locally within a Docker container, so you don't have to make an account on Qdrant. But they offer a free plan that is enough to run the code within this article. In case you want to run Qdrant locally, you need Docker. If you use Qdrant's serverless version, you don't need Docker.
 
 ## Install
@@ -41,7 +56,7 @@ cp .env.example .env
 ```
 ...and fill in the `QDRANT_URL` and `QDRANT_API_KEY` environment variables.
 
-## Run
+## Usage
 
 In case you run Qdrant locally, spin it up using the following command:
 ```shell
@@ -58,4 +73,15 @@ You can run the retrieval client and visualizations within the following Jupyter
 
 ## License
 
-Everything within this repository is under an MIT LICENSE. As long you distribute our LICENSE along with your code, feel free to clone it and use it as you wish.
+This article is an open-source project released under the MIT license. Thus, as long you distribute our LICENSE and acknowledge our work, you can safely clone or fork this project and use it as a source of inspiration for whatever you want (e.g., work, university projects, college degree projects, etc.).
+
+## Contributors
+
+<table>
+  <tr>
+    <td><img src="https://github.com/iusztinpaul.png" width="100" style="border-radius:50%;"/></td>
+    <td>
+      <strong>Paul Iusztin | Senior ML & MLOps Engineer </strong>
+    </td>
+  </tr>
+</table>
