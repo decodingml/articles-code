@@ -36,6 +36,7 @@ To fully grasp the code, check out our articles ↓
 
 ## Dependencies
 
+- [Python (version 3.11)](https://www.python.org/downloads/)
 - [Poetry (version 1.6.1)](https://python-poetry.org/)
 - [GNU Make (version 3.81)](https://www.gnu.org/software/make/)
 - [Docker (version 24.0.7)](https://www.docker.com/) or [Qdrant](https://qdrant.tech/)
