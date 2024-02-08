@@ -2,7 +2,7 @@
 
 {Article's introduction}
 
-![Architecture]()
+![Thumbnail Image]()
 
 ## Table of Contents
 
