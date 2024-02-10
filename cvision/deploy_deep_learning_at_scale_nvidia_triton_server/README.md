@@ -33,8 +33,7 @@ In this article, we'll go over how to prepare,set,serve and use a Image Classifi
 
 To fully grasp the code, check out our articles ↓
 
-1. [Summary]()
-2. [Full Article]()
+1. [Full Article](https://decodingml.substack.com/p/dml-how-to-deploy-deep-learning-models)
 
 ## Dependencies
 
