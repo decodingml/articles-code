@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "deploy_deep_learning_at_scale_nvidia_triton_server"
+version = "0.1.0"
+description = "Sample project to get started with Triton Inference Server"
+authors = ["Joywalker <alexandrurazvant@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+numpy = "^1.26.4"
+pillow = "^10.2.0"
+tritonclient = {extras = ["http"], version = "^2.42.0"}
+scipy = "^1.12.0"
+docker-compose = "^1.29.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
