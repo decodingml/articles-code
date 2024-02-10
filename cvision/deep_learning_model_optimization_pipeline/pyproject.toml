@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "deploy_deep_learning_at_scale_nvidia_triton_server"
+name = "deep_learning_model_optimization_pipeline"
 version = "0.1.0"
-description = "Sample project to get started with Triton Inference Server"
+description = "A pipeline to convert .pt to .engine YOLO models"
 authors = ["Joywalker <alexandrurazvant@gmail.com>"]
 readme = "README.md"
 
