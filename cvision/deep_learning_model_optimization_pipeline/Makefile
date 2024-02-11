@@ -12,6 +12,7 @@ help:
 	@echo -e "$(BLUE)Usage: make [target]$(NC)"
 	@echo -e "$(BLUE)Targets:$(NC)"
 	@echo -e "$(BLUE)  install_nvidia_container_runtime$(NC) - Install NVIDIA Container Runtime"
+	@echo -e "$(BLUE)  install_nvidia_cuda_cc$(NC) - Install NVIDIA CUDA"
 	
 
 install_nvidia_container_runtime:
@@ -25,3 +26,7 @@ install_nvidia_container_runtime:
 	sudo systemctl restart docker
 	@echo -e "$(GREEN)NVIDIA Container Runtime installed$(NC)"
 
+install_nvidia_cuda_cc:
+	@echo -e "$(GREEN)Installing NVIDIA CUDA...$(NC)"
+	@sudo apt-get update && sudo apt-get install -y nvidia-cuda-toolkit
+	@echo -e "$(GREEN)NVIDIA CUDA installed$(NC)"
