@@ -1,0 +1,6 @@
+[submodule "cvision/deep_learning_model_optimization_pipeline/object_detectors/yolov5"]
+	path = cvision/deep_learning_model_optimization_pipeline/object_detectors/yolov5
+	url = https://github.com/ultralytics/yolov5
+[submodule "cvision/deep_learning_model_optimization_pipeline/object_detectors/yolov8"]
+	path = cvision/deep_learning_model_optimization_pipeline/object_detectors/yolov8
+	url = https://github.com/ultralytics/ultralytics.git
