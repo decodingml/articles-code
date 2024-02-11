@@ -1,0 +1,18 @@
+{   
+    "tritonserver_version": "22.12",
+    "model_family": "yolo-s",
+    "model_release": 5,
+    "weights": "yolov5s.pt",
+    "imgsz": [640, 640],
+    "device": "0",
+    "dtype": "fp16",
+    "min_bsz": 1,
+    "max_bsz": 8,
+    "dynamic": true,
+    "nms": true,
+    "simplify": true,
+    "opset": 14,
+    "project": "person_detection",
+    "task": "objectdetection",
+    "version": "1.0"
+}

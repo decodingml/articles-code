@@ -24,3 +24,4 @@ install_nvidia_container_runtime:
 	@sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
 	sudo systemctl restart docker
 	@echo -e "$(GREEN)NVIDIA Container Runtime installed$(NC)"
+

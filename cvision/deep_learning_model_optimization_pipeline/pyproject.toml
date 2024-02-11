@@ -7,12 +7,27 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-numpy = "^1.26.4"
-pillow = "^10.2.0"
-tritonclient = {extras = ["http"], version = "^2.42.0"}
-scipy = "^1.12.0"
-docker-compose = "^1.29.2"
+numpy = "1.26.3"
+onnx = "1.14.0"
+onnxruntime-gpu = "1.14"
+onnx-simplifier = "0.4.28"
+torch = {url = "https://download.pytorch.org/whl/cu117/torch-2.0.1%2Bcu117-cp39-cp39-linux_x86_64.whl", platform = "linux"}
+opencv-python = "4.7.0.72"
+tqdm = "4.65.0"
+matplotlib = "3.8.2"
+pyyaml = "6.0.1"
+psutil = "5.9.7"
+pandas = "2.1.4"
+py-cpuinfo = "9.0.0"
+docker = "7.0.0"
+onnxsim = "0.4.33"
+torchvision = "0.15.2"
+setuptools = "^69.0.3"
 
+
+[[tool.poetry.source]]
+name = "PyPI"
+priority = "primary"
 
 [build-system]
 requires = ["poetry-core"]
