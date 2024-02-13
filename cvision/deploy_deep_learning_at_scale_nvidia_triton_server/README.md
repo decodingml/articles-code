@@ -19,7 +19,6 @@ In this article, we'll go over how to prepare,set,serve and use a Image Classifi
 ## Table of Contents
 
 - [Deploy Deep Learning Models at Scale using NVIDIA Triton Inference Server](#deploy-deep-learning-models-at-scale-using-nvidia-triton-inference-server)
-  - [Table of Contents](#table-of-contents)
   - [Articles](#articles)
   - [Dependencies](#dependencies)
   - [Install](#install)
