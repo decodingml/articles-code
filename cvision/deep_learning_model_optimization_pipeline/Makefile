@@ -11,9 +11,25 @@ SHELL := /bin/bash
 help:
 	@echo -e "$(BLUE)Usage: make [target]$(NC)"
 	@echo -e "$(BLUE)Targets:$(NC)"
+	@echo -e "$(BLUE)  check_nvidia$(NC) - Check for NVIDIA Container Toolkit and nvcc"
 	@echo -e "$(BLUE)  install_nvidia_container_runtime$(NC) - Install NVIDIA Container Runtime"
 	@echo -e "$(BLUE)  install_nvidia_cuda_cc$(NC) - Install NVIDIA CUDA"
 	
+
+
+check_nvidia:
+	@echo -e "$(BLUE)Checking for NVIDIA Container Toolkit...$(NC)"
+	@if dpkg -l | grep -qw nvidia-container-toolkit; then \
+		echo -e "$(GREEN)NVIDIA Container Toolkit is already installed.$(NC)"; \
+	else \
+		echo -e "$(RED)NVIDIA Container Toolkit is not installed.$(NC)"; \
+	fi
+	@echo -e "$(BLUE)Checking for nvcc...$(NC)"
+	@if hash nvcc 2>/dev/null; then \
+  		echo -e "$(GREEN)nvcc is already installed. Version: $$(nvcc --version | grep release | sed 's/.*release //;s/,.*//')$(NC)"; \
+	else \
+		echo -e "$(RED)nvcc is not installed.$(NC)"; \
+	fi
 
 install_nvidia_container_runtime:
 	@echo -e "$(GREEN)Installing NVIDIA Container Runtime...$(NC)"
