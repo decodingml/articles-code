@@ -8,27 +8,28 @@ Here, the Decoding ML team aggregates all the code written for their articles. T
 
 ### How to navigate the repository?
 
-The articles are tagged and divided based on their main domain, such as `llms`, `cv`, `mlops`, following the structure from below: 
+The articles are tagged and divided based on their main domain, such as `large_language_models`, `computer_vision`, or `mlops`, following the structure from below: 
 
 ```
 .
-├── llms
-│   ├── article 1
-│   ├── article 2
-│   ├── ...
-│   └── article n
-├── cv
-│   ├── article 1
-│   ├── article 2
-│   ├── ...
-│   └── article n
-├── mlops
-│   ├── article 1
-│   ├── article 2
-│   ├── ...
-│   └── article n
-└── ...
-.
+└── articles
+    ├── large_language_models
+    │   ├── article 1
+    │   ├── article 2
+    │   ├── ...
+    │   └── article n
+    ├── computer_vision
+    │   ├── article 1
+    │   ├── article 2
+    │   ├── ...
+    │   └── article n
+    ├── mlops
+    │   ├── article 1
+    │   ├── article 2
+    │   ├── ...
+    │   └── article n
+    └── ...
+    .
 ```
 
 > [!IMPORTANT]  
