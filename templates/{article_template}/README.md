@@ -54,21 +54,21 @@ This article is an open-source project released under the MIT license. Thus, as 
 
 <table>
   <tr>
-    <td><img src="https://github.com/iusztinpaul.png" width="100" style="border-radius:50%;"/></td>
+    <td><a href="https://github.com/iusztinpaul" target="_blank"><img src="https://github.com/iusztinpaul.png" width="100" style="border-radius:50%;"/></a></td>
     <td>
       <strong>Paul Iusztin</strong><br />
       <i>Senior ML & MLOps Engineer</i>
     </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/alexandruvesa.png" width="100" style="border-radius:50%;"/></td>
+    <td><a href="https://github.com/alexandruvesa" target="_blank"><img src="https://github.com/alexandruvesa.png" width="100" style="border-radius:50%;"/></a></td>
     <td>
       <strong>Alexandru Vesa</strong><br />
       <i>Senior AI Engineer</i>
     </td>
   </tr>
   <tr>
-    <td><img src="https://github.com/Joywalker.png" width="100" style="border-radius:50%;"/></td>
+    <td><a href="https://github.com/Joywalker" target="_blank"><img src="https://github.com/Joywalker.png" width="100" style="border-radius:50%;"/></a></td>
     <td>
       <strong>Răzvanț Alexandru</strong><br />
       <i>Senior ML Engineer</i>
