@@ -80,7 +80,7 @@ This article is an open-source project released under the MIT license. Thus, as 
 
 <table>
   <tr>
-    <td><img src="https://github.com/iusztinpaul.png" width="100" style="border-radius:50%;"/></td>
+    <td><a href="https://github.com/iusztinpaul" target="_blank"><img src="https://github.com/iusztinpaul.png" width="100" style="border-radius:50%;"/></a></td>
     <td>
       <strong>Paul Iusztin</strong><br />
       <i>Senior ML & MLOps Engineer</i>
