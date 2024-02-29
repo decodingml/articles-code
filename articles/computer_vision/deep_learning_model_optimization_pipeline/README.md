@@ -60,9 +60,10 @@ To fully grasp the code, check out our articles ↓
 - [GNU Make (version 3.81)](https://www.gnu.org/software/make/)
 - [Docker (version 24.0.7)](https://www.docker.com/)
 
-
 ## Install
-
+- Before going forward, make sure `yolov5` and `yolov8` repos are cloned.
+- Run: `git submodule update --init --recursive` to update submodules.
+- This will clone the yolo repos under `object_detectors/`
 
 
 ## Usage

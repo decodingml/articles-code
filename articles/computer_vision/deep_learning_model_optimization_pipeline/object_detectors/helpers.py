@@ -15,9 +15,15 @@ class Versions(IntEnum):
 
 
 # [(CONTAINER_VERSION, TENSORRT_VERSION, SUPPORTS_DYNAMIC_SHAPE?)]
+# Note: Versioning here is based on NVIDIA Container Compatibility Matrix
+#       I've hardcoded these for now as I'm using "trt" only for model naming
+#       and not for actual TRT versioning. This can be improved in future.
+#       Also, I've had some issues with converting YOLOv5 dynamic to TRT on 21.09,
+#       so I've hardcoded it to False for now.
+# Please refer to : https://docs.nvidia.com/deeplearning/frameworks/support-matrix/index.html#framework-matrix-2021
 TRT_CONTAINERS = {
-    "21.09": {"trt": "8003", "dynamic_support": False},
-    "22.12": {"trt": "842", "dynamic_support": True},
+    "21.09": {"trt": "803", "dynamic_support": False},
+    "22.12": {"trt": "851", "dynamic_support": True},
 }
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 cwd = os.getcwd()
