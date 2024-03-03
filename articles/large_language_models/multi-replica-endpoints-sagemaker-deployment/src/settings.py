@@ -68,3 +68,5 @@ class Settings(ModelDeploySettings, SummarizationSettings):
 
 
 settings = Settings()
+
+print(settings)

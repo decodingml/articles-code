@@ -41,6 +41,6 @@ def create_huggingface_endpoint(task_name, endpoint_type=EndpointType.INFERENCE_
 
 
 if __name__ == "__main__":
-    authenticate_with_aws_vault("epostbox.development")
+    authenticate_with_aws_vault("your-profile")
     task_name = "summarization"
     create_huggingface_endpoint(task_name, endpoint_type=EndpointType.MODEL_BASED)

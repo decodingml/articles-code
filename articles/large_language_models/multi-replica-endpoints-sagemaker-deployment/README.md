@@ -1,6 +1,9 @@
 # Multi-replica endpoints deployment Mistral-7b-v0.1 with AWS Sagemaker
 
-At this year's re:Invent (2023), a significant announcement for Amazon SageMaker involved the introduction of the Hardware Requirements object for Amazon SageMaker endpoints. This addition offers detailed control over the computing resources allocated for models on SageMaker, including specifications for minimum CPU, GPU, memory, and the number of replicas. This enhancement enables precise optimization of model throughput and cost efficiency by tailoring compute resources to fit the model's needs and supports the deployment of multiple Large Language Models (LLMs) on a single instance. Before this update, deploying multiple replicas of an LLM or several LLMs on a single endpoint was unfeasible, which could restrict the maximum throughput of models that are not compute-bound, such as deploying a single Mistral-7b model on g5.12xlarge instances.
+At this year's re:Invent (2023), a significant announcement for Amazon SageMaker involved the introduction of the Hardware Requirements object for Amazon SageMaker endpoints. 
+This addition offers detailed control over the computing resources allocated for models on SageMaker, including specifications for minimum CPU, GPU, memory, and the number of replicas. 
+This enhancement enables precise optimization of model throughput and cost efficiency by tailoring compute resources to fit the model's needs and supports the deployment of multiple Large Language Models (LLMs) on a single instance. 
+Before this update, deploying multiple replicas of an LLM or several LLMs on a single endpoint was unfeasible, which could restrict the maximum throughput of models that are not compute-bound, such as deploying a single Mistral-7b model on g5.12xlarge instances.
 
 ![Architecture](./media/sagemaker_architecture.png)
 
@@ -85,10 +88,41 @@ ARN_ROLE='your sagemaker arn role' #This role must be configured from AWS interf
 ```
 
 ## Usage
+In the script src/run.py is all the logic you need to deploy a LLM to the sagemaker environment.
+
+The endpoint_type parameter is one of the most important parameters in this class. It can be:
+
+    EndpointType.MODEL_BASED - without inference-components
+
+    EndpointType.INFERENCE_COMPONENT - with inference-component
+
+To be able to scale the SageMaker endpoint to handle thousands of requests it’s mandatory to have EndpointType.INFERENCE_COMPONENT.
+
+In our model_resource_config we have copies=4, which means 4 replicas of our endpoint. If we check the cloud watch logs group ‘aws/sagemaker/InferenceComponents/your-inference-component-name, you should see 4 log streams, which represent the replicas.
+
+The model_resource_config can be found in settings.py 
+class Settings(ModelDeploySettings, SummarizationSettings):
+
+    @property
+    def model_resource_config(self):
+        return ResourceRequirements(
+            requests={
+                "copies": self.COPIES,
+                "num_accelerators": self.GPUS,
+                "num_cpus": self.CPUS,
+                "memory": 5 * 1024,  # Example value, adjust based on your needs
+            },
+        )
+
 
 After you setup, the deployment of a model can be done using:
 ```shell
 python src/run.py
+```
+
+To delete everything you can use:
+```shell
+python src/delete_sagemaker_resources.py
 ```
 
 ## Resources

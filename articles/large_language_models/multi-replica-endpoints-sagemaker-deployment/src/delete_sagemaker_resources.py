@@ -87,10 +87,10 @@ def perform_delete_sagemaker_resources(task_name):
 
 
 if __name__ == "__main__":
-    from ai_document_tasks.core.aws.utils import authenticate_with_aws_vault
+    from src.aws_auth import authenticate_with_aws_vault
 
-    authenticate_with_aws_vault("epostbox.development")
-    task_name = "evaluation"
+    authenticate_with_aws_vault("your-profile")
+    task_name = "summarization"
     perform_delete_sagemaker_resources(task_name=task_name)
 
     # delete_endpoint(
