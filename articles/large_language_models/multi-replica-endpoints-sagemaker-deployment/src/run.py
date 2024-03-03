@@ -1,12 +1,11 @@
 from sagemaker.enums import EndpointType
 from sagemaker.huggingface import get_huggingface_llm_image_uri
 
+from src.aws_auth import authenticate_with_aws_vault
 from src.service import DeploymentService
 from src.settings import settings
 from src.strategy import SagemakerHuggingfaceStrategy
-from src.utils import (
-    ResourceManager,
-)
+from src.utils import ResourceManager
 
 
 def create_huggingface_endpoint(task_name, endpoint_type=EndpointType.INFERENCE_COMPONENT_BASED):
@@ -41,7 +40,7 @@ def create_huggingface_endpoint(task_name, endpoint_type=EndpointType.INFERENCE_
     )
 
 
-# if __name__ == "__main__":
-#     authenticate_with_aws_vault("epostbox.development")
-#     task_name = "summarization"
-#     create_huggingface_endpoint(task_name, endpoint_type=EndpointType.INFERENCE_COMPONENT_BASED)
+if __name__ == "__main__":
+    authenticate_with_aws_vault("epostbox.development")
+    task_name = "summarization"
+    create_huggingface_endpoint(task_name, endpoint_type=EndpointType.MODEL_BASED)

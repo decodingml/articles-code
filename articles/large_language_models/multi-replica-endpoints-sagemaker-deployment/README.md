@@ -6,7 +6,7 @@ Social media data platforms produce data at high frequencies, so the vector DB c
 
 In this article, we will explain only the retrieval part of an RAG system. Still, you can quickly hook the retrieved LinkedIn posts to an LLM for post analysis or personalized content generation.
 
-![Architecture](https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0f27e7c-074e-474e-be6f-807de46110bf_1378x1102.svg)
+![Architecture](./media/sagemaker_architecture.png)
 
 **That being said, in this article, you will learn:**
 
@@ -29,23 +29,21 @@ In this article, we will explain only the retrieval part of an RAG system. Still
 
 ## Articles
 
-To fully grasp the code, check out our articles ↓
+To fully grasp the code, check out the full article
 
-1. [Summary]()
-2. [Full Article]()
+1. [Full Article](https://decodingml.substack.com/p/youre-not-digging-deeper-into-concepts)
 
 ## Dependencies
 
 - [Python (version 3.11)](https://www.python.org/downloads/)
 - [Poetry (version 1.6.1)](https://python-poetry.org/)
 - [GNU Make (version 3.81)](https://www.gnu.org/software/make/)
-- [Docker (version 24.0.7)](https://www.docker.com/) or [Qdrant](https://qdrant.tech/)
+- [Docker (version 24.0.7)](https://www.docker.com/)
 
-> [!IMPORTANT] 
-> We also support running Qdrant locally within a Docker container, so you don't have to make an account on Qdrant. But they offer a free plan that is enough to run the code within this article. In case you want to run Qdrant locally, you need Docker. If you use Qdrant's serverless version, you don't need Docker.
 
 ## Install
 
+pip install -U git+https://github.com/achimgaedke/py-aws-vault-auth.git
 As we use Make and Poetry to manage the project, to install the project, you have to run the following:
 ```shell
 make install
