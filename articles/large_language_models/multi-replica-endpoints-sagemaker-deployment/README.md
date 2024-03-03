@@ -1,20 +1,16 @@
 # Multi-replica endpoints deployment Mistral-7b-v0.1 with AWS Sagemaker
 
-In this article, you will learn how to build a real-time retrieval system for social media data. In our particular scenario, we will use only my LinkedIn posts, which can easily be extended to other platforms supporting written content, such as X, Instagram, or Medium.
-
-Social media data platforms produce data at high frequencies, so the vector DB can easily remain behind relative to the other data sources from your system. Thus, we will show you how to build a streaming engine to constantly move data from a raw data source to a vector DB in real-time.
-
-In this article, we will explain only the retrieval part of an RAG system. Still, you can quickly hook the retrieved LinkedIn posts to an LLM for post analysis or personalized content generation.
+-Description : TBD -
 
 ![Architecture](./media/sagemaker_architecture.png)
 
 **That being said, in this article, you will learn:**
 
-- to build a streaming pipeline to ingest LinkedIn posts into a vector DB in real-time
-- to clean, chunk, and embed LinkedIn posts
-- build a retrieval client to query your LinkedIn posts
-- use the rerank pattern to improve the retrieval accuracy
-- visualize the retrieval for a given query in a 2D plot using UMAP
+- How to navigate the complexities of deploying Large Language Models (LLMs) using AWS SageMaker, including utilizing AWS SageMaker with Huggingface DLC, native AWS containers, and direct deployment on EC2 instances.
+- To understand the deployment process deeply, from selecting the right LLM, creating an endpoint configuration and model, to finally creating an endpoint for your model within the AWS SageMaker ecosystem.
+- The challenges and solutions for creating a production-ready environment in AWS SageMaker, including the new Hardware Requirements object for detailed control over computing resources.
+- To grasp the essential components of SageMaker inference endpoints and how to effectively deploy models such as Mistral 7B, ensuring both high throughput and cost efficiency.
+- Strategies for cleaning SageMaker resources thoroughly to avoid unexpected costs, ensuring all components of your deployment are successfully removed when no longer needed.
 
 ## Table of Contents
 
@@ -37,15 +33,15 @@ To fully grasp the code, check out the full article
 
 - [Python (version 3.11)](https://www.python.org/downloads/)
 - [Poetry (version 1.6.1)](https://python-poetry.org/)
-- [GNU Make (version 3.81)](https://www.gnu.org/software/make/)
 - [Docker (version 24.0.7)](https://www.docker.com/)
 
 
 ## Install
 
 AWS: Install the aws-cli (don't use homebrew) and aws-vault (if you are in WSL, make sure you use the file vault).
+
 aws-vault is a tool designed to securely manage AWS (Amazon Web Services) credentials and to facilitate the execution of commands that require AWS access. 
-Check out their repository for more information: https://github.com/99designs/aws-vault
+Check out their repository for how to install it : https://github.com/99designs/aws-vault
 
 It's very important to use py-aws-vault-auth because the entire code use aws-vault for managing the AWS credentials.
 It's very useful to use py-aws-vault-auth if you want to have an interactive shell fully authenticated with AWS credentials.
@@ -58,22 +54,40 @@ As we use Poetry to manage the project, to install the project, you have to run 
 poetry install
 ```
 
-In case you use Qdrant's serverless option, you have to add its authentication credentials in a `.env` file, as follows:
+In order to run the code you must set up `.env` file, as follows:
 ```shell
 cp .env.example .env
 ```
-...and fill in the `QDRANT_URL` and `QDRANT_API_KEY` environment variables.
+
+The `.env` file is splited into 2 categories:
+
+1.Deployment Variables:
+```shell
+SM_NUM_GPUS=1  # Number of GPU used per replica
+MAX_INPUT_LENGTH=4095 # Max length of input text
+MAX_TOTAL_TOKENS=4096 # Max length of the generation (including input text)
+MAX_BATCH_TOTAL_TOKENS=8192 # Limits the number of tokens that can be processed in parallel during the generation
+HUGGING_FACE_HUB_TOKEN= "<REPLACE WITH YOUR TOKEN>" #It is used to acces the model from HuggingFace DLC
+HF_MODEL_ID=mistralai/Mistral-7B-Instruct-v0.1 # model_id from hf.co/models
+GPU_INSTANCE_TYPE='ml.g5.12xlarge'
+
+```
+
+2.Sagemaker Deployment Variables:
+```shell
+SAGEMAKER_ENDPOINT_SUMMARIZATION=llm-endpoint #name of sagemaker endpoint which will be used for inference
+SAGEMAKER_MODEL_SUMMARIZATION=llm-model #name of sagemaker model
+SAGEMAKER_ENDPOINT_CONFIG_SUMMARIZATION=llm-endpoint #name of endpoint configuration
+SAGEMAKER_INFERENCE_COMPONENT_SUMMARIZATION=inference-component #name of inference component
+ARN_ROLE='your sagemaker arn role' #This role must be configured from AWS interface
+
+```
 
 ## Usage
 
-In case you run Qdrant locally, spin it up using the following command:
+After you setup, the deployment of a model can be done using:
 ```shell
-make run_qdrant_as_docker
-```
-
-Ingest the LinkedIn posts into Qdrant (make sure your Qdrant instance is running before triggering this command):
-```shell
-make run
+python src/run.py
 ```
 
 
