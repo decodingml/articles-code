@@ -37,7 +37,6 @@ To fully grasp the code, check out the full article
 
 - [Python (version 3.11)](https://www.python.org/downloads/)
 - [Poetry (version 1.6.1)](https://python-poetry.org/)
-- [Docker (version 24.0.7)](https://www.docker.com/)
 
 
 ## Install
