@@ -43,10 +43,19 @@ To fully grasp the code, check out the full article
 
 ## Install
 
-pip install -U git+https://github.com/achimgaedke/py-aws-vault-auth.git
-As we use Make and Poetry to manage the project, to install the project, you have to run the following:
+AWS: Install the aws-cli (don't use homebrew) and aws-vault (if you are in WSL, make sure you use the file vault).
+aws-vault is a tool designed to securely manage AWS (Amazon Web Services) credentials and to facilitate the execution of commands that require AWS access. 
+Check out their repository for more information: https://github.com/99designs/aws-vault
+
+It's very important to use py-aws-vault-auth because the entire code use aws-vault for managing the AWS credentials.
+It's very useful to use py-aws-vault-auth if you want to have an interactive shell fully authenticated with AWS credentials.
 ```shell
-make install
+pip install -U git+https://github.com/achimgaedke/py-aws-vault-auth.git
+```
+
+As we use Poetry to manage the project, to install the project, you have to run the following:
+```shell
+poetry install
 ```
 
 In case you use Qdrant's serverless option, you have to add its authentication credentials in a `.env` file, as follows:
@@ -67,8 +76,6 @@ Ingest the LinkedIn posts into Qdrant (make sure your Qdrant instance is running
 make run
 ```
 
-You can run the retrieval client and visualizations within the following Jupyter Notebook:
-`-> retrieve.ipynb`
 
 ## License
 
@@ -78,10 +85,10 @@ This article is an open-source project released under the MIT license. Thus, as 
 
 <table>
   <tr>
-    <td><a href="https://github.com/iusztinpaul" target="_blank"><img src="https://github.com/iusztinpaul.png" width="100" style="border-radius:50%;"/></a></td>
+    <td><a href="https://github.com/alexandruvesa" target="_blank"><img src="https://avatars.githubusercontent.com/u/37544969?s=400&u=7b2961a85bf399d0d28e64c606c11e34556f4574&v=4" width="100" style="border-radius:50%;"/></a></td>
     <td>
-      <strong>Paul Iusztin</strong><br />
-      <i>Senior ML & MLOps Engineer</i>
+      <strong>Vesa Alexandru</strong><br />
+      <i>Senior AI Engineer</i>
     </td>
   </tr>
 </table>
