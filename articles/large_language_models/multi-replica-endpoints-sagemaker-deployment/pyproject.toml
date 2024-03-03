@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "multi-replica-endpoints-sagemaker-deployment"
+version = "0.1.0"
+description = ""
+authors = ["Alex Vesa"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pydantic-settings = "^2.2.1"
+python-dotenv = "^1.0.1"
+sagemaker = "^2.210.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
