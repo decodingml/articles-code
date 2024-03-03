@@ -1,6 +1,6 @@
 # Multi-replica endpoints deployment Mistral-7b-v0.1 with AWS Sagemaker
 
--Description : TBD -
+At this year's re:Invent (2023), a significant announcement for Amazon SageMaker involved the introduction of the Hardware Requirements object for Amazon SageMaker endpoints. This addition offers detailed control over the computing resources allocated for models on SageMaker, including specifications for minimum CPU, GPU, memory, and the number of replicas. This enhancement enables precise optimization of model throughput and cost efficiency by tailoring compute resources to fit the model's needs and supports the deployment of multiple Large Language Models (LLMs) on a single instance. Before this update, deploying multiple replicas of an LLM or several LLMs on a single endpoint was unfeasible, which could restrict the maximum throughput of models that are not compute-bound, such as deploying a single Mistral-7b model on g5.12xlarge instances.
 
 ![Architecture](./media/sagemaker_architecture.png)
 
@@ -18,6 +18,7 @@
 - [Dependencies](#dependencies)
 - [Install](#install)
 - [Usage](#usage)
+- [Resources](#resources)
 - [License](#license)
 - [Contributors](#contributors)
 
@@ -90,6 +91,12 @@ After you setup, the deployment of a model can be done using:
 python src/run.py
 ```
 
+## Resources
+AWS re:Invent 2023 - Scaling FM inference to hundreds of models with Amazon SageMaker (AIM327)
+https://www.youtube.com/watch?v=6xENDvgnMCs&t=1245s 
+
+AWS re:Invent 2023 - Scale complete ML development with Amazon SageMaker Studio (AIM325)
+https://www.youtube.com/watch?v=stB-F6jswno
 
 ## License
 
