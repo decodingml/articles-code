@@ -1,4 +1,4 @@
-# Real-time retrieval system for social media data
+# Multi-replica endpoints deployment Mistral-7b-v0.1 with AWS Sagemaker
 
 In this article, you will learn how to build a real-time retrieval system for social media data. In our particular scenario, we will use only my LinkedIn posts, which can easily be extended to other platforms supporting written content, such as X, Instagram, or Medium.
 
@@ -6,7 +6,7 @@ Social media data platforms produce data at high frequencies, so the vector DB c
 
 In this article, we will explain only the retrieval part of an RAG system. Still, you can quickly hook the retrieved LinkedIn posts to an LLM for post analysis or personalized content generation.
 
-![Architecture](./media/social_media_retrieval_system_architecture.png)
+![Architecture](https://substackcdn.com/image/fetch/w_1456,c_limit,f_webp,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fd0f27e7c-074e-474e-be6f-807de46110bf_1378x1102.svg)
 
 **That being said, in this article, you will learn:**
 
