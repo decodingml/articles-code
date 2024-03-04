@@ -2,6 +2,8 @@
 __pycache__/
 *.py[cod]
 *$py.class
+**/*/__pycache__/
+**/*.pyc
 
 # C extensions
 *.so
@@ -127,6 +129,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+**/*.env
 
 # Spyder project settings
 .spyderproject
@@ -155,6 +158,6 @@ cython_debug/
 # IDEs
 .idea/
 .vscode/
-**/*/__pycache__/
-**/*.pyc
-**/*.env
+
+# MacOS
+.DS_Store
