@@ -31,7 +31,7 @@ In this article, we will explain only the retrieval part of an RAG system. Still
 
 To fully grasp the code, check out our articles ↓
 
-1. [Summary]()
+1. [Summary](https://open.substack.com/pub/decodingml/p/a-real-time-retrieval-system-for?r=1ttoeh&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true)
 2. [Full Article](https://superlinked.com/vectorhub/a-real-time-retrieval-system-for-social-media-data)
 
 ## Dependencies
