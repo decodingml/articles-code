@@ -4,7 +4,7 @@ from pydantic_settings import SettingsConfigDict, BaseSettings
 
 
 class AppSettings(BaseSettings):
-    model_config = SettingsConfigDict(env_file="../.env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(env_file="../../.env", env_file_encoding="utf-8")
 
     UPSTASH_KAFKA_UNAME: str
     UPSTASH_KAFKA_PASS: str

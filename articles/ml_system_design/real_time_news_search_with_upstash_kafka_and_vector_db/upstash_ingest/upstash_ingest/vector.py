@@ -2,9 +2,9 @@ from typing import Optional, List
 
 from bytewax.outputs import DynamicSink, StatelessSinkPartition
 from upstash_vector import Index, Vector
-from models import EmbeddedDocument
-from settings import settings
-from logger import get_logger
+from upstash_ingest.models import EmbeddedDocument
+from upstash_ingest.settings import settings
+from upstash_ingest.logger import get_logger
 
 
 logger = get_logger(__name__)
@@ -85,8 +85,6 @@ class UpstashVectorSink(StatelessSinkPartition):
         for i in range(0, len(vectors), self._upsert_batch_size):
             batch_vectors = vectors[i : i + self._upsert_batch_size]
             try:
-                self._client.upsert(
-                    vectors=batch_vectors, collection_name=self._collection_name
-                )
+                self._client.upsert(vectors=batch_vectors)
             except Exception as e:
                 logger.error(f"Caught an exception during batch upsert {e}")

@@ -7,8 +7,8 @@ from newsapi import NewsApiClient
 from newsdataapi import NewsDataApiClient
 from pydantic import ValidationError
 
-from .models import NewsAPIModel, NewsDataIOModel
-from .settings import settings
+from upstash_ingest.models import NewsAPIModel, NewsDataIOModel
+from upstash_ingest.settings import settings
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)

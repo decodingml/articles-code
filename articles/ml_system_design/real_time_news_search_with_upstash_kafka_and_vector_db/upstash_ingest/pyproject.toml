@@ -6,7 +6,7 @@ authors = ["razvantalex <alexandrurazvant@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = ">=3.9,<3.9.7 || >3.9.7,<4.0"
 kafka-python = "^2.0.2"
 python-dotenv = "^1.0.1"
 pydantic = "^2.6.3"
@@ -25,6 +25,7 @@ sentence-transformers = "^2.6.0"
 streamlit = "^1.32.2"
 pytest = "^8.1.1"
 faker = "^24.4.0"
+confluent-kafka = "^2.3.0"
 
 
 [build-system]
