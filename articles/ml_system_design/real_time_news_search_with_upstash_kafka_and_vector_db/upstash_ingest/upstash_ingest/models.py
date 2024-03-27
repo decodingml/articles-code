@@ -23,7 +23,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pydantic import BaseModel, Field, field_validator
 from unstructured.staging.huggingface import chunk_by_attention_window
 
-from upstash_ingest.cleaners import clean_text, normalize_whitespace, remove_html_tags
+from upstash_ingest.cleaners import clean_full, normalize_whitespace, remove_html_tags
 from upstash_ingest.embeddings import TextEmbedder
 
 logger = logging.getLogger(__name__)
@@ -123,7 +123,7 @@ class EmbeddedDocument(BaseModel):
 
 class CommonDocument(BaseModel):
     article_id: str = Field(default_factory=lambda: str(uuid4()))
-    title: str = Field(default_factory=lambda t: clean_text(t))
+    title: str = Field(default_factory=lambda t: clean_full(t))
     url: str = Field(
         default_factory=lambda t: remove_html_tags(normalize_whitespace(t))
     )
@@ -133,8 +133,8 @@ class CommonDocument(BaseModel):
     source_name: str = Field(default="")
     image_url: Optional[str] = Field(default="N/A")
     author: Optional[str] = Field(default="Unknown")
-    description: Optional[str] = Field(default_factory=lambda t: clean_text(t))
-    content: Optional[str] = Field(default_factory=lambda t: clean_text(t))
+    description: Optional[str] = Field(default_factory=lambda t: clean_full(t))
+    content: Optional[str] = Field(default_factory=lambda t: clean_full(t))
 
     @field_validator("published_at")
     def clean_date_field(cls, v):

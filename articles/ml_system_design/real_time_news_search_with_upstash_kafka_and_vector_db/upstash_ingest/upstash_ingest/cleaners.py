@@ -29,7 +29,7 @@ def normalize_whitespace(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
-def clean_text(text: str) -> str:
+def clean_full(text: str) -> str:
     """
     Cleans the given text by applying the following set of operations:
     - clean (e.g whitespaces)
@@ -44,7 +44,12 @@ def clean_text(text: str) -> str:
     Returns:
         str: The cleaned text.
     """
-    text = clean(text=text)
+    text = clean(
+        text=text,
+        lowercase=True,
+        extra_whitespace=True,
+        dashes=True,
+    )
     text = clean_ordered_bullets(text)
     text = replace_unicode_quotes(text)
     text = clean_non_ascii_chars(text)

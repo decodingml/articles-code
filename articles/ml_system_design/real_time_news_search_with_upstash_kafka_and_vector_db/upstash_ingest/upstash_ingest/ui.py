@@ -13,9 +13,10 @@ from io import BytesIO
 
 import requests
 import streamlit as st
-from embeddings import TextEmbedder
 from PIL import Image
-from settings import settings
+from upstash_ingest.embeddings import TextEmbedder
+from upstash_ingest.settings import settings
+from upstash_ingest.cleaners import clean_full
 from upstash_vector import Index
 
 v_index = Index(url=settings.UPSTASH_VECTOR_ENDPOINT, token=settings.UPSTASH_VECTOR_KEY)
@@ -90,6 +91,7 @@ def display_articles(articles):
 
 def on_text_enter():
     question = st.session_state.question
+    question = clean_full(question)
     if question:
         articles = query_index(question)
         display_articles(articles)
