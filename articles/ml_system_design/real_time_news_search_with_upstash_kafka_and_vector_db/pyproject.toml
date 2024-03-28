@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "upstash-ingest"
+version = "0.1.0"
+description = ""
+authors = ["razvantalex <alexandrurazvant@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.9,<3.9.7 || >3.9.7,<4.0"
+kafka-python = "^2.0.2"
+python-dotenv = "^1.0.1"
+pydantic = "^2.6.3"
+unstructured = "^0.11.8"
+bytewax = "^0.19.0"
+newsdataapi = "^0.1.11"
+newsapi-python = "^0.2.7"
+requests = "^2.31.0"
+transformers = "^4.38.2"
+upstash-vector = "^0.2.1"
+fire = "^0.6.0"
+torch = "^2.2.1"
+langchain = "^0.1.13"
+pydantic-settings = "^2.2.1"
+sentence-transformers = "^2.6.0"
+streamlit = "^1.32.2"
+pytest = "^8.1.1"
+faker = "^24.4.0"
+confluent-kafka = "^2.3.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
