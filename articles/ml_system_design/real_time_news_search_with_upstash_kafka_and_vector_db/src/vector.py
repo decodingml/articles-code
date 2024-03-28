@@ -2,9 +2,9 @@ from typing import Optional, List
 
 from bytewax.outputs import DynamicSink, StatelessSinkPartition
 from upstash_vector import Index, Vector
-from upstash_ingest.models import EmbeddedDocument
-from upstash_ingest.settings import settings
-from upstash_ingest.logger import get_logger
+from .models import EmbeddedDocument
+from .settings import settings
+from .logger import get_logger
 
 
 logger = get_logger(__name__)

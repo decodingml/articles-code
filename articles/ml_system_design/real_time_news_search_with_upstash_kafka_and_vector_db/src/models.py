@@ -23,8 +23,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pydantic import BaseModel, Field, field_validator
 from unstructured.staging.huggingface import chunk_by_attention_window
 
-from upstash_ingest.cleaners import clean_full, normalize_whitespace, remove_html_tags
-from upstash_ingest.embeddings import TextEmbedder
+from .cleaners import clean_full, normalize_whitespace, remove_html_tags
+from .embeddings import TextEmbedder
 
 logger = logging.getLogger(__name__)
 
@@ -123,23 +123,27 @@ class EmbeddedDocument(BaseModel):
 
 class CommonDocument(BaseModel):
     article_id: str = Field(default_factory=lambda: str(uuid4()))
-    title: str = Field(default="N/A")
-    url: str = Field(default="N/A")
+    title: str = Field(default_factory=lambda: "N/A")
+    url: str = Field(default_factory=lambda: "N/A")
     published_at: str = Field(
         default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     )
-    source_name: str = Field(default="")
-    image_url: Optional[str] = Field(default="N/A")
-    author: Optional[str] = Field(default="Unknown")
-    description: Optional[str] = Field(default="")
-    content: Optional[str] = Field(default="")
+    source_name: str = Field(default_factory=lambda: "Unknown")
+    image_url: Optional[str] = Field(default_factory=lambda: None)
+    author: Optional[str] = Field(default_factory=lambda: "Unknown")
+    description: Optional[str] = Field(default_factory=lambda: None)
+    content: Optional[str] = Field(default_factory=lambda: None)
 
     @field_validator("title", "description", "content")
     def clean_text_fields(cls, v):
+        if v is None or v == "":
+            return "N/A"
         return clean_full(v)
 
     @field_validator("url", "image_url")
     def clean_url_fields(cls, v):
+        if v is None:
+            return "N/A"
         v = remove_html_tags(v)
         v = normalize_whitespace(v)
         return v

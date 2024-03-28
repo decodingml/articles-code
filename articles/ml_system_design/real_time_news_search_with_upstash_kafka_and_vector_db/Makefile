@@ -13,7 +13,10 @@ help:
 	@echo "$(YELLOW)list$(RESET)            : List available targets with descriptions"
 	@echo ""
 	@echo "== Env =="
-	@echo "$(RED)install$(RESET)			: Installs a new py39 env and sets-up poetry packages"
+	@echo "$(GREEN)install$(RESET)			: Installs a new py39 env and sets-up poetry packages"
+	@echo ""
+	@echo "== Help =="
+	@echo "$(RED)clean_vdb$(RESET)			: Removes all vectors from upstash vector db"
 	@echo ""
 	@echo "== Test =="
 	@echo "$(YELLOW)test$(RESET)			: Runs unit-tests."
@@ -40,8 +43,12 @@ install:
 
 run_producers:
 	@echo "$(GREEN) [RUNNING] Producers $(RESET)"
-	@bash -c "poetry run python upstash_ingest/upstash_ingest/producer.py"
+	@bash -c "poetry run python -m src.producer"
 
-run_bytewax_pipeline:
+run_pipeline:
 	@echo "$(GREEN) [RUNNING] Bytewax Pipeline $(RESET)"
-	@bash -c "poetry run python -m bytewax.run upstash_ingest/upstash_ingest/start:flow"
+	@bash -c "RUST_BACKTRACE=1 poetry run python -m bytewax.run src/start:flow"
+
+clean_vdb:
+	@echo "$(RED) [CLEANING] Upstash Vector DB $(RESET)"
+	@bash -c "poetry run python -m src.helpers clean_vectordb"

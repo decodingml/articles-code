@@ -12,13 +12,16 @@ from pathlib import Path
 from typing import Optional
 
 import bytewax.operators as op
-import upstash_ingest.consumer as consumer
-import upstash_ingest.vector as vector
+from .vector import UpstashVectorOutput
+from .consumer import process_message, build_kafka_stream_client
 from bytewax.connectors.kafka import KafkaSource
 from bytewax.dataflow import Dataflow
 from bytewax.outputs import DynamicSink
-from upstash_ingest.embeddings import TextEmbedder
-from upstash_ingest.models import ChunkedDocument, EmbeddedDocument, RefinedDocument
+from .embeddings import TextEmbedder
+from .models import ChunkedDocument, EmbeddedDocument, RefinedDocument
+from .logger import get_logger
+
+logger = get_logger(__name__)
 
 
 def build(
@@ -48,7 +51,7 @@ def build(
         flow=dataflow,
         source=_build_input(),
     )
-    stream = op.flat_map("map_kinp", stream, consumer.process_message)
+    stream = op.flat_map("map_kinp", stream, process_message)
     # _ = op.inspect("dbg_map_kinp", stream)
     stream = op.map("refine", stream, RefinedDocument.from_common)
     # _ = op.inspect("dbg_refine", stream)
@@ -65,12 +68,16 @@ def build(
     )
     # _ = op.inspect("dbg_embed", stream)
     stream = op.output("output", stream, _build_output())
+    logger.info("Successfully created bytewax dataflow.")
+    logger.info(
+        "\tStages: Kafka Input -> Map -> Refine -> Chunkenize -> Embed -> Upsert"
+    )
     return dataflow
 
 
 def _build_input() -> KafkaSource:
-    return consumer.build_kafka_stream_client()
+    return build_kafka_stream_client()
 
 
 def _build_output() -> DynamicSink:
-    return vector.UpstashVectorOutput()
+    return UpstashVectorOutput()

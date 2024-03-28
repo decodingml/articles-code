@@ -2,13 +2,15 @@
 
 from pydantic_settings import SettingsConfigDict, BaseSettings
 import os
-import sys
 
-sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+dir_path = os.path.dirname(os.path.realpath(__file__))
+print(dir_path)
 
 
 class AppSettings(BaseSettings):
-    model_config = SettingsConfigDict(env_file="../.env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(
+        env_file=os.path.join(dir_path, "..", "./.env"), env_file_encoding="utf-8"
+    )
 
     UPSTASH_KAFKA_UNAME: str
     UPSTASH_KAFKA_PASS: str
@@ -27,6 +29,8 @@ class AppSettings(BaseSettings):
     NEWSDATAIO_KEY: str
     NEWS_TOPIC: str
     ARTICLES_BATCH_SIZE: int = 5
+
+    FETCH_WAIT_WINDOW: int = 1800  # seconds (30 minutes)
 
     EMBEDDING_MODEL_ID: str = "sentence-transformers/all-MiniLM-L6-v2"
     EMBEDDING_MODEL_MAX_INPUT_LENGTH: int = 384

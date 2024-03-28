@@ -15,10 +15,10 @@ import time
 import fire
 from kafka import KafkaProducer
 from typing import Callable, List, NoReturn
-from settings import settings
-from logger import get_logger
-from models import CommonDocument
-import tools
+from .settings import settings
+from .logger import get_logger
+from .models import CommonDocument
+from .tools import NewsFetcher
 
 logger = get_logger(__name__)
 
@@ -39,41 +39,18 @@ class KafkaProducerThread(threading.Thread):
     def __init__(
         self,
         producer_id: int,
-        bootstrap_servers: str,
+        producer: KafkaProducer,
         topic: str,
         fetch_function: Callable,
     ) -> None:
         super().__init__(daemon=True)
         self.producer_id = f"KafkaProducerThread #{producer_id}"
+        self.producer = producer  # Use the shared producer
         self.topic = topic
         self.fetch_function = fetch_function
-        self.wait_window_sec = 3600  # 1 hour
+        self.wait_window_sec = settings.FETCH_WAIT_WINDOW  # Adjust as needed
         self.running = threading.Event()
         self.running.set()
-        self.producer = self._initialize_producer(bootstrap_servers)
-
-    def _initialize_producer(self, bootstrap_servers: str) -> KafkaProducer:
-        """
-        Initialize the Kafka producer.
-
-        Note:
-            - The producer is configured with the specified UpStash Kafka settings.
-            - The value serializer is set to JSON encoding.
-        """
-        try:
-            producer = KafkaProducer(
-                bootstrap_servers=bootstrap_servers,
-                sasl_mechanism=settings.UPSTASH_KAFKA_SASL_MECHANISM,
-                security_protocol=settings.UPSTASH_KAFKA_SECURITY_PROTOCOL,
-                sasl_plain_username=settings.UPSTASH_KAFKA_UNAME,
-                sasl_plain_password=settings.UPSTASH_KAFKA_PASS,
-                api_version_auto_timeout_ms=100000,
-                value_serializer=lambda v: json.dumps(v).encode("utf-8"),
-            )
-            return producer
-        except Exception as e:
-            logger.error(f"Failed to initialize Kafka producer {self.producer_id}: {e}")
-            raise
 
     def run(self) -> NoReturn:
         """Continuously fetch and send messages to a Kafka topic."""
@@ -109,12 +86,12 @@ class KafkaProducerSwarm:
 
     def __init__(
         self,
-        bootstrap_servers: str,
+        producer: KafkaProducer,
         topic: str,
         fetch_functions: List[Callable],
     ):
         self.producer_threads = [
-            KafkaProducerThread(i, bootstrap_servers, topic, fetch_function)
+            KafkaProducerThread(i, producer, topic, fetch_function)
             for i, fetch_function in enumerate(fetch_functions)
         ]
 
@@ -127,22 +104,40 @@ class KafkaProducerSwarm:
         """Stops all producer threads and waits for them to terminate."""
         for thread in self.producer_threads:
             thread.stop()
+        for thread in self.producer_threads:
             thread.join()
 
 
-def main():
-    fetcher = tools.NewsFetcher()
-    multi_producer = KafkaProducerSwarm(
+def create_producer() -> KafkaProducer:
+    """Initializes and returns a KafkaProducer instance."""
+    return KafkaProducer(
         bootstrap_servers=settings.UPSTASH_KAFKA_ENDPOINT,
+        sasl_mechanism=settings.UPSTASH_KAFKA_SASL_MECHANISM,
+        security_protocol=settings.UPSTASH_KAFKA_SECURITY_PROTOCOL,
+        sasl_plain_username=settings.UPSTASH_KAFKA_UNAME,
+        sasl_plain_password=settings.UPSTASH_KAFKA_PASS,
+        api_version_auto_timeout_ms=100000,
+        value_serializer=lambda v: json.dumps(v).encode("utf-8"),
+    )
+
+
+def main():
+    producer = create_producer()
+    fetcher = NewsFetcher()
+
+    multi_producer = KafkaProducerSwarm(
+        producer=producer,
         topic=settings.UPSTASH_KAFKA_TOPIC,
         fetch_functions=fetcher.sources,
     )
+
     try:
         multi_producer.start()
-    except Exception as e:
-        logger.error(f"Error in producer swarm: {e}")
+        while True:
+            time.sleep(1)
     finally:
         multi_producer.stop()
+        producer.close()
 
 
 if __name__ == "__main__":

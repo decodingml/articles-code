@@ -1,6 +1,6 @@
 import pytest
 from unittest.mock import patch
-from upstash_ingest.tools import NewsFetcher
+from src.tools import NewsFetcher
 
 
 def mocked_newsapi_article():

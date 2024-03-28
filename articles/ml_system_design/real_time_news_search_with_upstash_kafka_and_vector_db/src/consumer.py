@@ -27,7 +27,7 @@ def build_kafka_stream_client():
         brokers=[settings.UPSTASH_KAFKA_ENDPOINT],
         add_config=kafka_config,
     )
-    logger.info["KafkaSource client created successfully."]
+    logger.info("KafkaSource client created successfully.")
     return kafka_input
 
 

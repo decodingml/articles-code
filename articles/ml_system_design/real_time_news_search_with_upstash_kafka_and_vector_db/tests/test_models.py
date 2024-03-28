@@ -4,8 +4,8 @@
 """
 
 from datetime import datetime
-from upstash_ingest.models import CommonDocument, RefinedDocument
-from upstash_ingest.cleaners import clean_full, remove_html_tags
+from src.models import CommonDocument, RefinedDocument
+from src.cleaners import clean_full, remove_html_tags
 from faker import Faker
 
 fake = Faker()

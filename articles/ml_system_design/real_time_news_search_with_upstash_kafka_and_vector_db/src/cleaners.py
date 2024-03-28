@@ -45,12 +45,8 @@ def clean_full(text: str) -> str:
         str: The cleaned text.
     """
     text = clean(
-        text=text,
-        lowercase=True,
-        extra_whitespace=True,
-        dashes=True,
+        text=text, lowercase=True, extra_whitespace=True, dashes=True, bullets=True
     )
-    text = clean_ordered_bullets(text)
     text = replace_unicode_quotes(text)
     text = clean_non_ascii_chars(text)
     text = remove_punctuation(text)
