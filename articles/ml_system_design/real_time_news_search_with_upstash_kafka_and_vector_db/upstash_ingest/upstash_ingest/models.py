@@ -123,18 +123,26 @@ class EmbeddedDocument(BaseModel):
 
 class CommonDocument(BaseModel):
     article_id: str = Field(default_factory=lambda: str(uuid4()))
-    title: str = Field(default_factory=lambda t: clean_full(t))
-    url: str = Field(
-        default_factory=lambda t: remove_html_tags(normalize_whitespace(t))
-    )
+    title: str = Field(default="N/A")
+    url: str = Field(default="N/A")
     published_at: str = Field(
         default_factory=lambda: datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     )
     source_name: str = Field(default="")
     image_url: Optional[str] = Field(default="N/A")
     author: Optional[str] = Field(default="Unknown")
-    description: Optional[str] = Field(default_factory=lambda t: clean_full(t))
-    content: Optional[str] = Field(default_factory=lambda t: clean_full(t))
+    description: Optional[str] = Field(default="")
+    content: Optional[str] = Field(default="")
+
+    @field_validator("title", "description", "content")
+    def clean_text_fields(cls, v):
+        return clean_full(v)
+
+    @field_validator("url", "image_url")
+    def clean_url_fields(cls, v):
+        v = remove_html_tags(v)
+        v = normalize_whitespace(v)
+        return v
 
     @field_validator("published_at")
     def clean_date_field(cls, v):

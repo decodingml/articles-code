@@ -1,11 +1,10 @@
 import pytest
 from unittest.mock import patch
-from upstash_ingest.models import CommonDocument
-from upstash_ingest.tools import NewsFetcher, handle_article_fetching
+from upstash_ingest.tools import NewsFetcher
 
-# Sample data for mocking responses
-NEWS_API_IO_ARTICLES = [
-    {
+
+def mocked_newsapi_article():
+    return {
         "article_id": "0b09d2891dcb9085f2d5201249356458",
         "title": "Top events of the day: From PM Modi's Kerala visit to Russian presidential elections, track top news on March 15 here",
         "link": "https://www.livemint.com/news/india/top-events-of-the-day-from-pm-modis-kerala-visit-to-russian-presidential-elections-track-top-news-on-march-15-here-11710464847509.html",
@@ -28,11 +27,11 @@ NEWS_API_IO_ARTICLES = [
         "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS",
         "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS",
     }
-]
 
-NEWSDATA_API_ARTICLES = [
-    {
-        "source": {"id": 0, "name": "News18"},
+
+def mocked_newsdata_article():
+    return {
+        "source": {"id": None, "name": "News18"},
         "author": "News18",
         "title": "Still Using Paytm FASTag? Here Is A Step-by-Step Guide To Port To A New FASTag - News18",
         "description": "NHAI suggests users acquire FASTags from the 32 banks that are now on the authorised list for FASTag issuing",
@@ -40,15 +39,6 @@ NEWSDATA_API_ARTICLES = [
         "urlToImage": "https://images.news18.com/ibnlive/uploads/2024/02/untitled-design-2024-02-12t023732.441-2024-02-d1cbfb73a1fd442b891b3917ea3d4de1-16x9.jpg?impolicy=website&width=1200&height=675",
         "publishedAt": "2024-03-14T12:18:27Z",
         "content": "In a recent move, the Reserve Bank of India (RBI) ordered Paytm Payments Bank Ltd. (PPBL) to cease taking deposits or top-ups in any client accounts including wallets and FASTags after February 29, 2\u2026 [+3529 chars]",
-    }
-]
-
-
-def mocked_article():
-    return {
-        "title": "Mocked News 1",
-        "description": "Mocked Description 1",
-        "url": "https://example.com",
     }
 
 
@@ -61,10 +51,16 @@ def mock_news_fetcher():
     ) as mock_fetch_from_newsdataapi:
 
         mock_fetch_from_newsapi.return_value = [
-            {"title": "Mocked News 1", "description": "Mocked Description 1"}
+            {
+                "article_id": "0b09d2891dcb9085f2d5201249356458",
+                "pubDate": "2024-03-15 01:42:57",
+            }
         ]
         mock_fetch_from_newsdataapi.return_value = [
-            {"title": "Mocked News 2", "description": "Mocked Description 2"}
+            {
+                "source": {"id": None, "name": "News18"},
+                "author": "News18",
+            }
         ]
 
         yield NewsFetcher()
@@ -76,5 +72,8 @@ def test_news_fetch(mock_news_fetcher):
 
     assert len(news_api_articles) > 0
     assert len(newsdata_api_articles) > 0
-    assert news_api_articles[0]["title"] == "Mocked News 1"
-    assert newsdata_api_articles[0]["title"] == "Mocked News 2"
+    assert news_api_articles[0]["article_id"] == "0b09d2891dcb9085f2d5201249356458"
+    assert news_api_articles[0]["pubDate"] == "2024-03-15 01:42:57"
+
+    assert newsdata_api_articles[0]["source"] == {"id": None, "name": "News18"}
+    assert newsdata_api_articles[0]["author"] == "News18"

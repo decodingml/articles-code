@@ -5,7 +5,7 @@
 
 from datetime import datetime
 from upstash_ingest.models import CommonDocument, RefinedDocument
-from upstash_ingest.cleaners import clean_text, remove_html_tags
+from upstash_ingest.cleaners import clean_full, remove_html_tags
 from faker import Faker
 
 fake = Faker()
@@ -24,10 +24,10 @@ def test_common_document_creation():
         description=description,
     )
 
-    assert doc.title == clean_text(title)
+    assert doc.title == clean_full(title)
     assert doc.url == remove_html_tags(url)
     assert doc.published_at == published_at
-    assert doc.description == clean_text(description)
+    assert doc.description == clean_full(description)
 
 
 def test_common_document_to_kafka_payload():

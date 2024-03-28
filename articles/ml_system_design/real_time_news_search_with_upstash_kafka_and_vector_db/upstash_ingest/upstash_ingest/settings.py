@@ -1,10 +1,14 @@
 """Application Settings"""
 
 from pydantic_settings import SettingsConfigDict, BaseSettings
+import os
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
 
 
 class AppSettings(BaseSettings):
-    model_config = SettingsConfigDict(env_file="../../.env", env_file_encoding="utf-8")
+    model_config = SettingsConfigDict(env_file="../.env", env_file_encoding="utf-8")
 
     UPSTASH_KAFKA_UNAME: str
     UPSTASH_KAFKA_PASS: str
