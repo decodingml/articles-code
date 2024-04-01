@@ -3,9 +3,9 @@ from typing import List
 
 from bytewax.connectors.kafka import KafkaSinkMessage, KafkaSource
 
-from .logger import get_logger
-from .models import CommonDocument
-from .settings import settings
+from logger import get_logger
+from models import CommonDocument
+from settings import settings
 
 logger = get_logger(__name__)
 

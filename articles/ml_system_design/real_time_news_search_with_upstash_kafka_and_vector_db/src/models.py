@@ -23,8 +23,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from pydantic import BaseModel, Field, field_validator
 from unstructured.staging.huggingface import chunk_by_attention_window
 
-from .cleaners import clean_full, normalize_whitespace, remove_html_tags
-from .embeddings import TextEmbedder
+from cleaners import clean_full, normalize_whitespace, remove_html_tags
+from embeddings import TextEmbedder
 
 logger = logging.getLogger(__name__)
 

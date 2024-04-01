@@ -4,7 +4,7 @@
 """
 
 from bytewax.testing import run_main
-from .flow import build as build_flow
+from flow import build as build_flow
 
 flow = build_flow()
 

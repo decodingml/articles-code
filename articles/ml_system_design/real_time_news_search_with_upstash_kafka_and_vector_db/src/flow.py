@@ -12,14 +12,14 @@ from pathlib import Path
 from typing import Optional
 
 import bytewax.operators as op
-from .vector import UpstashVectorOutput
-from .consumer import process_message, build_kafka_stream_client
+from vector import UpstashVectorOutput
+from consumer import process_message, build_kafka_stream_client
 from bytewax.connectors.kafka import KafkaSource
 from bytewax.dataflow import Dataflow
 from bytewax.outputs import DynamicSink
-from .embeddings import TextEmbedder
-from .models import ChunkedDocument, EmbeddedDocument, RefinedDocument
-from .logger import get_logger
+from embeddings import TextEmbedder
+from models import ChunkedDocument, EmbeddedDocument, RefinedDocument
+from logger import get_logger
 
 logger = get_logger(__name__)
 

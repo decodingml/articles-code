@@ -10,20 +10,21 @@ help:
 	@echo ""
 	@echo "Available targets:"
 	@echo "-------------------"
-	@echo "$(YELLOW)list$(RESET)            : List available targets with descriptions"
+	@echo "$(YELLOW)list$(RESET)		: List available targets with descriptions"
 	@echo ""
 	@echo "== Env =="
-	@echo "$(GREEN)install$(RESET)			: Installs a new py39 env and sets-up poetry packages"
+	@echo "$(GREEN)install$(RESET)		: Installs a new py39 env and sets-up poetry packages"
 	@echo ""
 	@echo "== Help =="
-	@echo "$(RED)clean_vdb$(RESET)			: Removes all vectors from upstash vector db"
+	@echo "$(RED)clean_vdb$(RESET)		: Removes all vectors from upstash vector db"
 	@echo ""
 	@echo "== Test =="
-	@echo "$(YELLOW)test$(RESET)			: Runs unit-tests."
+	@echo "$(YELLOW)test$(RESET)		: Runs unit-tests."
 	@echo ""
 	@echo "== Production =="
-	@echo "$(GREEN)run_producers$(RESET)    : Starts the Kafka Producers"
-	@echo "$(GREEN)run_pipeline$(RESET)     : Starts the bytewax pipeline"
+	@echo "$(GREEN)run_producers$(RESET)	: Starts the Kafka Producers"
+	@echo "$(GREEN)run_pipeline$(RESET)		: Starts the bytewax pipeline"
+	@echo "$(GREEN)run_ui$(RESET)		: Starts the bytewax pipeline"
 	@echo ""
 	@echo ""
 
@@ -40,7 +41,10 @@ install:
 	@echo "Installing Packages"
 	@echo "Changing to pyproject.toml location..."
 	@bash -c "cd upstash_ingest && PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring poetry install"
-
+test:
+	@echo "$(GREEN) [TESTING] Running UnitTests $(RESET)"
+	@bash -c "poetry run pytest tests/"
+	
 run_producers:
 	@echo "$(GREEN) [RUNNING] Producers $(RESET)"
 	@bash -c "poetry run python -m src.producer"
@@ -52,3 +56,7 @@ run_pipeline:
 clean_vdb:
 	@echo "$(RED) [CLEANING] Upstash Vector DB $(RESET)"
 	@bash -c "poetry run python -m src.helpers clean_vectordb"
+
+run_ui:
+	@echo "$(GREEN) [RUNNING] Streamlit UI interface $(RESET)"
+	@bash -c "poetry run streamlit run ui.py"

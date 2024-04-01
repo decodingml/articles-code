@@ -15,10 +15,10 @@ import time
 import fire
 from kafka import KafkaProducer
 from typing import Callable, List, NoReturn
-from .settings import settings
-from .logger import get_logger
-from .models import CommonDocument
-from .tools import NewsFetcher
+from settings import settings
+from logger import get_logger
+from models import CommonDocument
+from tools import NewsFetcher
 
 logger = get_logger(__name__)
 
