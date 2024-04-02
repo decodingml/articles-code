@@ -40,7 +40,7 @@ install:
 			poetry env use $(which python)"
 	@echo "Installing Packages"
 	@echo "Changing to pyproject.toml location..."
-	@bash -c "cd upstash_ingest && PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring poetry install"
+	@bash -c " PYTHON_KEYRING_BACKEND=keyring.backends.fail.Keyring poetry install"
 test:
 	@echo "$(GREEN) [TESTING] Running UnitTests $(RESET)"
 	@bash -c "poetry run pytest tests/"
