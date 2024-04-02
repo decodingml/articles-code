@@ -11,7 +11,7 @@ This pattern of the application we're going to build is commonly used as part of
 
 ![Architecture](./media/upstash_news_search_engine_system_architecture.png)
 
-** Here's what we're going to learn how to: **
+<b>Here's what we're going to learn how to: </b>
 - ingest articles from news APIs
 - spawn multiple Kafka Producer threads and push messages to Upstash Kafka cluster
 - use Bytewax to process payloads from Kafka
@@ -72,7 +72,7 @@ Here's the full command-set to start the solution:
 
 ## Notes
 
-> [!`KeyPoint`] 
+> **_NOTE:_**  
 > To ingest News Articles, we're using 2 APIs which offer free-tier access:
 1. NewsAPI
     - Articles fetched from here have their `content` field limited to 260 characters. You can get the full-content with a paid plan, but for our use-case is more than enough.
