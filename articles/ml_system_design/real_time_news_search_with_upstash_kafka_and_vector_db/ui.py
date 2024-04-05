@@ -47,7 +47,7 @@ def query_index(question: str):
     return [
         {
             "score": sim.score,
-            "title": sim.metadata["author"],
+            "title": sim.metadata["title"],
             "image": sim.metadata["image_url"],
             "date": sim.metadata["published_at"],
             "original": sim.metadata["url"],
@@ -59,7 +59,7 @@ def query_index(question: str):
 def display_articles(articles):
     if articles:
         results_placeholder.empty()
-        n_cols = 3
+        n_cols = 2
         n_rows = (len(articles) + n_cols - 1) // n_cols
         for row in range(n_rows):
             cols = st.columns(n_cols)
