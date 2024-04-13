@@ -35,7 +35,7 @@ This pattern of the application we're going to build is commonly used as part of
 This is a code-first summary version, make sure to read the article in full ↓
 
 1. [Summary]()
-2. [Full](https://medium.com/decodingml/how-to-build-a-real-time-news-search-engine-using-serverless-upstash-kafka-and-vector-db-6ba393e55024#0c9c)
+2. [Full](https://medium.com/decodingml/how-to-build-a-real-time-news-search-engine-using-serverless-upstash-kafka-and-vector-db-6ba393e55024)
 
 ## Dependencies
 
