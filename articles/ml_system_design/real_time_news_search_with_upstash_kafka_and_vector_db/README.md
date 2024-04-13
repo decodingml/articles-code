@@ -35,7 +35,7 @@ This pattern of the application we're going to build is commonly used as part of
 This is a code-first summary version, make sure to read the article in full ↓
 
 1. [Summary]()
-2. [Full]()
+2. [Full](https://medium.com/decodingml/how-to-build-a-real-time-news-search-engine-using-serverless-upstash-kafka-and-vector-db-6ba393e55024#0c9c)
 
 ## Dependencies
 
@@ -97,27 +97,29 @@ Here's the full command-set to start the solution:
     - Payloads from here have more fields compared to API #1, but still some are available only on paid plans.
     - Payload example:
 ```
-{   'article_id': '0b09d2891dcb9085f2d5201249356458', 
-    'title': "Top events of the day: From PM Modi's Kerala visit to Russian presidential elections, track top news on March 15 here", 
-    'link': 'https://www.livemint.com/news/india/top-events-of-the-day-from-pm-modis-kerala-visit-to-russian-presidential-elections-track-top-news-on-march-15-here-11710464847509.html', 
-    'keywords': None, 
-    'creator': None, 
-    'video_url': None, 
-    'description': "Top news of the day: PM Modi's Lok Sabha poll campaign in Kerala, Rahul Gandhi to address a public rally in Bhiwandi, deadline of advance tax payment, Russia's presidential elections, and more", 
-    'content': 'ONLY AVAILABLE IN PAID PLANS', 
-    'pubDate': '2024-03-15 01:42:57', 
-    'image_url': 'https://www.livemint.com/lm-img/img/2024/03/15/1600x900/Modi-16_1710466650723_1710466677228.jpg', 
-    'source_id': 'livemint', 'source_url': 'https://www.livemint.com', 
-    'source_icon': 'https://i.bytvi.com/domain_icons/livemint.png', 
-    'source_priority': 7134, 
-    'country': ['india'], 
-    'category': ['top'], 
-    'language': 'english', 
-    'ai_tag': 'ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS', 
-    'sentiment': 'ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS', 
-    'sentiment_stats': 'ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS', 
-    'ai_region': 'ONLY AVAILABLE IN CORPORATE PLANS'
-    }
+{   
+    "article_id": "0b09d2891dcb9085f2d5201249356458", 
+    "title": "Top events of the day: From PM Modi's Kerala visit to Russian presidential elections, track top news on March 15 here", 
+    "link": "https://www.livemint.com/news/india/top-events-of-the-day-from-pm-modis-kerala-visit-to-russian-presidential-elections-track-top-news-on-march-15-here-11710464847509.html",
+    "keywords": "None", 
+    "creator": "None", 
+    "video_url": "None", 
+    "description": "Top news of the day: PM Modi's Lok Sabha poll campaign in Kerala, Rahul Gandhi to address a public rally in Bhiwandi, deadline of advance tax payment, Russia's presidential elections, and more", 
+    "content": "ONLY AVAILABLE IN PAID PLANS",
+    "pubDate": "2024-03-15 01:42:57", 
+    "image_url": "https://www.livemint.com/lm-img/img/2024/03/15/1600x900/Modi-16_1710466650723_1710466677228.jpg", 
+    "source_id": "livemint", 
+    "source_url": "https://www.livemint.com", 
+    "source_icon": "https://i.bytvi.com/domain_icons/livemint.png", 
+    "source_priority": 7134, 
+    "country": ["india"], 
+    "category": ["top"], 
+    "language": "english", 
+    "ai_tag": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS", 
+    "sentiment": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS", 
+    "sentiment_stats": "ONLY AVAILABLE IN PROFESSIONAL AND CORPORATE PLANS", 
+    "ai_region": "ONLY AVAILABLE IN CORPORATE PLANS"
+}
 ```
 
 ## License
