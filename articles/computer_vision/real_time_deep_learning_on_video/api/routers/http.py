@@ -1,7 +1,4 @@
-import uuid
-
 import cv2
-from aiortc.rtcrtpsender import RTCRtpSender
 from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 
@@ -9,7 +6,7 @@ router = APIRouter()
 
 
 def generate_frames():
-    video = cv2.VideoCapture("sample.mp4")
+    video = cv2.VideoCapture("../sample.mp4")
 
     while True:
         success, frame = video.read()

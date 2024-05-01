@@ -1,18 +1,10 @@
 import uuid
 
-from aiortc import (
-    MediaStreamTrack,
-    RTCConfiguration,
-    RTCIceServer,
-    RTCPeerConnection,
-    RTCSessionDescription,
-)
+from aiortc import MediaStreamTrack, RTCPeerConnection, RTCSessionDescription
 from aiortc.contrib.media import MediaPlayer, MediaRelay
-from fastapi import APIRouter, Body, FastAPI
+from fastapi import APIRouter, Body
 
-app = FastAPI()
 router = APIRouter()
-
 relay = MediaRelay()
 
 
@@ -37,7 +29,7 @@ class RTCConnectionManager:
 
     async def handle_offer(self, offer: dict):
         video_track = MediaPlayer(
-            file="sample.mp4",
+            file="../sample.mp4",
             format="mp4",
         ).video
         relayed_track = relay.subscribe(video_track)

@@ -6,7 +6,7 @@ router = APIRouter()
 @router.websocket("/ws")
 async def ws_video(websocket: WebSocket):
     await websocket.accept()
-    video = cv2.VideoCapture("sample.mp4")
+    video = cv2.VideoCapture("../sample.mp4")
 
     try:
         while True:
