@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "highly-scalable-data-ingestion-architecture-for-marketing-intelligence"
+version = "0.1.0"
+description = ""
+authors = ["Rares Istoc <istoc.rares@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+boto3 = "^1.34.131"
+aws-lambda-powertools = "^2.39.1"
+transformers = "^4.41.2"
+instaloader = "^4.11"
+pymongo = "^4.7.3"
+openai = "^1.35.3"
+backoff = "^2.2.1"
+pydantic = "^2.7.4"
+langchain = "^0.2.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

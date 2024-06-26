@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  db:
+    image: mongo
+    container_name: "decodingml_db"
+    logging:
+      options:
+        max-size: 1g
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "decodingml"
+      MONGO_INITDB_ROOT_PASSWORD: "decodingml"
+    ports:
+      - '27018:27017'
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+
+  crawler:
+    image: decodingml
+    container_name: decodingml-crawler
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: "src.crawler.lambda_handler"
+    ports:
+      - "9010:8080"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: unless-stopped
+
+  scheduler:
+    image: decodingml
+    container_name: decodingml-scheduler
+    command: "src.scheduler.lambda_handler"
+    ports:
+      - "9000:8080"
+    env_file:
+      - .env
+    depends_on:
+      - db
+    restart: unless-stopped
+
+volumes:
+  mongo_data:
