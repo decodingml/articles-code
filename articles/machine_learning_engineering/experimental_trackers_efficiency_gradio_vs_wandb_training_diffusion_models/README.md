@@ -1,12 +1,17 @@
 # Maximizing Experimental Tracking Efficiency: Gradio Custom Dashboards vs Wandb's Built-In Tools for Training Diffusion Models
 
-This mini-course will guide you through the essentials of Diffusion Models, show you how to monitor your experiments with Wandb or Gradio, and help you choose the right tools for your projects.
+This tutorial will guide you through the essentials of Diffusion Models, show you how to monitor your experiments with Wandb or Gradio, and help you choose the right tools for your projects.
 
 <b>Here's what we're going to learn how to:</b>
 - Setup Training of Diffusion Models
 - Use Wandb’s Built-In Tools
 - Build Custom Dashboards with Gradio
 
+### Wandb Dashboard:
+![Wandb Dashboard](./media/wandb_dashboard.png)
+
+### Gradio Dashboard:
+![Gradio Dashboard](./media/gradio_dashboard.png)
 
 ## Table of Contents
 
