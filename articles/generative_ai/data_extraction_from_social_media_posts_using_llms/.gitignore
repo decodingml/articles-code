@@ -1,0 +1,124 @@
+### AWS SAM ###
+.aws-sam/
+packaged.yaml
+
+# Compiled Python bytecode
+__pycache__/
+*.pyc
+*$py.class
+.project
+.pydevproject
+.settings
+*.bak
+*.pid
+*.pylint
+.cache/
+
+# C extensions
+*.so
+
+*.pdf
+*.jpg
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+tmp/
+
+# JetBrains IDE
+.idea/
+
+# VisualStudioCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history
+
+# Windows
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+
+# Build folder
+*/build/*
+
+# MacOS
+.DS_Store
+DS_Store
+
+# Log files
+*.log
+
+# Unit bert_test / coverage reports
+ocr/document/ocr_results
+temporary_files/
+coverage/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+ocr/.pytest_cache/
+.pytest_cache/
+
+# Environments
+ocr/.env
+.venv
+env/
+venv/
+.python-version
+settings_local.py
+settings_local_*.py
+
+# Sphinx documentation
+docs/_build/
+docs/
+
+# mypy
+.mypy_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+*.pem
+.env
+config.yaml
+
+/documents
+/summary_index
+
+credentials.json
+token.json
