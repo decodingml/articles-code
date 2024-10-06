@@ -1,6 +1,6 @@
 from pymongo.errors import ConnectionFailure
 from pymongo import MongoClient
-from articles.generative_ai.data_extraction_from_social_media_posts_using_llms.src.config import settings
+from config import settings
 
 
 class DatabaseConnection:

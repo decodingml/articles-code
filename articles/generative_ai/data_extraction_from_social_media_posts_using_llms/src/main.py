@@ -1,4 +1,4 @@
-from articles.generative_ai.data_extraction_from_social_media_posts_using_llms.src.report_generator import ReportGenerator
+from src.report_generator import ReportGenerator
 
 
 def main():

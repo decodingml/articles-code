@@ -8,12 +8,12 @@ from typing import List, Dict, Any
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain_openai import ChatOpenAI
 
-from articles.generative_ai.data_extraction_from_social_media_posts_using_llms.src.config import settings
-from articles.generative_ai.data_extraction_from_social_media_posts_using_llms.src.crawler import InstagramCrawler
-from articles.generative_ai.data_extraction_from_social_media_posts_using_llms.src.db import database
-from articles.generative_ai.data_extraction_from_social_media_posts_using_llms.src.llm import get_chain
-from schemas import ReportProfiles
-from templates import PROFILES_REPORT_TEMPLATE, PROFILES_TEMPLATE_REFINE
+from src.config import settings
+from src.crawler import InstagramCrawler
+from src.db import database
+from src.llm import get_chain
+from src.schemas import ReportProfiles
+from src.templates import PROFILES_REPORT_TEMPLATE, PROFILES_TEMPLATE_REFINE
 
 
 class ReportGenerator:
