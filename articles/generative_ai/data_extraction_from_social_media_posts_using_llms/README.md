@@ -3,7 +3,7 @@
 This course covers the implementation of an application, capable of extracting social media posts from instagram profiles 
 and creating a weekly report based on them, using the power of LLM's.
 
-![Thumbnail Image]()
+![Thumbnail Image](./media/article_cover.jpg)
 
 ## Table of Contents
 
@@ -43,6 +43,11 @@ To start the hole process you have to run the following:
 
 ```shell
 make run
+```
+
+Or you can run the following to see a list of all make commands available:
+```shell
+make help
 ```
 
 ## License
