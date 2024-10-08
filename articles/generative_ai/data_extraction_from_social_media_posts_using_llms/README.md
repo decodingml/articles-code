@@ -20,7 +20,7 @@ and creating a weekly report based on them, using the power of LLM's.
 
 To fully grasp the code, check out our articles ↓
 
-[Full Article](https://medium.com/p/6ebe0e2cdeb1/edit)
+[Full Article](https://medium.com/decodingml/from-posts-to-reports-leveraging-llms-for-social-media-data-mining-6ebe0e2cdeb1)
 
 ## Dependencies
 
