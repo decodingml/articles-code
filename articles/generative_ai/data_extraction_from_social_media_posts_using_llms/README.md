@@ -36,6 +36,16 @@ As we use Make and Poetry to manage the project, to install the project, you hav
 make setup
 ```
 
+You will also need to create a .env file:
+```shell
+touch .env
+```
+
+And then run:
+```shell
+cp .env.example .env
+```
+To copy the values from the example and fill them in.
 
 ## Usage
 
