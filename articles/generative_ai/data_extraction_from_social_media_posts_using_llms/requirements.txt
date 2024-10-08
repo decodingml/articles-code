@@ -1,0 +1,9 @@
+instaloader
+pymongo
+pydantic
+pydantic-settings
+langchain
+langchain-openai
+openai
+pandas
+python-dateutil

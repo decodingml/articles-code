@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "data extraction from social media posts using LLM's"
+version = "0.1.0"
+description = ""
+authors = ["Vlad Adumitracesei <vladadumitracesei02@gamil.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11, <4.0"
+instaloader = "^4.13.1"
+pymongo = "^4.9.1"
+pydantic = "^2.9.2"
+langchain = "^0.3.1"
+pandas = "^2.2.3"
+openai = "^1.50.0"
+langchain-openai = "^0.2.1"
+pydantic-settings = "^2.5.2"
+openpyxl = "^3.1.5"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

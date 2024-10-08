@@ -1,0 +1,26 @@
+# Compiled Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# AWS SAM
+events/
+
+# Git
+.git
+.gitignore
+
+# C extensions
+*.so
+
+# CI
+.gitlab-ci.yml
+
+# Docker
+docker-compose.yml
+
+*.md
+*.bak
+*.log
+*.example
