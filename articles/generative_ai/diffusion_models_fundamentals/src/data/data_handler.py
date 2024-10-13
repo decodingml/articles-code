@@ -1,4 +1,3 @@
-# data_handler.py
 import os
 
 from datasets import load_dataset
@@ -24,13 +23,10 @@ class DataHandler:
 
     def load_data(self):
         """
-        Loads the dataset using Hugging Face's `load_dataset` and applies transformations.
+        Loads the dataset from Huggingface
         """
-        self.dataset = load_dataset(self.dataset_name, split="train")
 
-    def preprocess_data(self):
-        # Apply transformation to each image in the dataset
-        self.dataset.set_transform(self._apply_transform)
+        self.dataset = load_dataset(self.dataset_name, split="train")
 
     def get_dataloader(self) -> DataLoader:
         """
@@ -39,20 +35,22 @@ class DataHandler:
         Returns:
             DataLoader: The DataLoader for the training dataset.
         """
+
         if self.train_dataloader is None:
             self.create_dataloader()
         return self.train_dataloader
 
     def save_reference_images(self, output_dir: str, n_images: int = 16) -> None:
         """
-        Saves a subset of the dataset as individual images and a grid.
+        Saves a subset of the dataset as individual images and as a grid.
 
         Args:
-            output_dir (str): Directory to save individual images.
+            output_dir (str): Directory to save images.
             n_images (int): Number of images to save.
         """
+
         if self.dataset is None:
-            raise ValueError("Data not loaded. Call `load_data()` before saving reference images.")
+            self.load_data()
 
         os.makedirs(output_dir, exist_ok=True)
         images = []
@@ -70,16 +68,25 @@ class DataHandler:
 
     def create_dataloader(self):
         """
-        Creates a DataLoader from the loaded dataset with the specified batch size.
+        Preprocesses the loaded dataset and creates a DataLoader with the specified batch size.
         """
-        if self.dataset is None:
-            raise ValueError("Dataset not loaded. Call `load_data()` before creating DataLoader.")
 
+        if self.dataset is None:
+            self.load_data()
+
+        self._preprocess_data()
         self.train_dataloader = DataLoader(
             self.dataset,
             batch_size=self.batch_size,
             shuffle=True
         )
+
+    def _preprocess_data(self):
+        """
+        # Apply transformation to each image in the dataset
+        """
+
+        self.dataset.set_transform(self._apply_transform)
         
     def _apply_transform(self, examples):
         """

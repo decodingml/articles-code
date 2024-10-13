@@ -4,20 +4,17 @@ import yaml
 from dataclasses import dataclass
 from typing import Optional
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 
 @dataclass
 class TrainingConfig:
-    project_name: str = "diffusion-butterflies"  # The name of the project, used for logging and tracking
+    project_name: str = "oxford-flowers"  # The name of the project, used for logging and tracking
     logger_name: Optional[str] = None  # The logger used by accelerate; can be None if logging is not required
     image_size: int = 128  # The generated image resolution (e.g., 128 for 128x128 images)
     train_batch_size: int = 16  # The batch size used during training
     eval_batch_size: int = 16  # The number of images to sample during evaluation
     num_epochs: int = 50  # Total number of training epochs
-    dataset_name: str = "huggan/smithsonian_butterflies_subset"  # The name of the Hugging Face dataset repository
+    dataset_name: str = "nelorth/oxford-flowers"  # The name of the Hugging Face dataset repository
+    huggingface_repo_name: str = "anca-ioana/oxford-flowers"  # The name of the Hugging Face model repository to push the newly trained model to
     gradient_accumulation_steps: int = 1  # Number of steps to accumulate gradients before an optimizer step
     learning_rate: float = 1e-4  # The initial learning rate for the optimizer
     lr_warmup_steps: int = 500  # Number of steps to warm up the learning rate from 0 to the initial learning rate
@@ -25,7 +22,7 @@ class TrainingConfig:
     save_model_epochs: int = 5  # Interval (in epochs) at which the model is saved
     num_train_timesteps: int = 1000  # The number of steps for which noise is added to the image
     mixed_precision: str = "no"  # Precision type for training; "no" for float32, "fp16" for mixed precision
-    output_dir: str = "ddpm-butterflies-128"  # The directory where model outputs (images, checkpoints) are saved
+    output_dir: str = "oxford-flowers"  # The directory where model outputs (images, checkpoints) are saved
     overwrite_output_dir: bool = True  # Overwrite the output directory if it already exists
     seed: int = 0  # Seed for random number generation to ensure reproducibility
     logger_name: str = "wandb"
@@ -52,4 +49,4 @@ class TrainingConfig:
             return cls()
 
 
-config = TrainingConfig.load_from_yaml("config.yaml")
+

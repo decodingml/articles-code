@@ -1,4 +1,3 @@
-# trainer.py
 import os
 import torch
 import torch.nn.functional as F
@@ -13,7 +12,7 @@ from typing import Tuple
 
 from config import TrainingConfig
 from model import DiffusionUNet
-from utils import save_grid_image
+from utils import save_grid_image, save_individual_images
 
 
 class Trainer:
@@ -96,8 +95,7 @@ class Trainer:
 
         generated_image_dir = os.path.join(self.config.output_dir, f"generated_epoch_{epoch}")
         os.makedirs(generated_image_dir, exist_ok=True)
-        for idx, img in enumerate(generated_images):
-            img.save(os.path.join(generated_image_dir, f"{idx}.png"))
+        save_individual_images(generated_images, generated_image_dir)
 
         generated_grid_path = os.path.join(self.config.output_dir, f"{epoch:04d}.png")
         save_grid_image(generated_images, rows=4, cols=4, output_path=generated_grid_path)
@@ -115,26 +113,38 @@ class Trainer:
         wandb.define_metric("epoch")
         wandb.define_metric("fid", step_metric="epoch")
 
+        # training loop over epochs
         for epoch in range(self.config.num_epochs):
             progress_bar = tqdm(total=len(self.dataloader), disable=not self.accelerator.is_local_main_process)
             progress_bar.set_description(f"Epoch {epoch}")
 
+            # training loop over epochs
             for step, batch in enumerate(self.dataloader):
                 clean_images = batch["images"].to(self.accelerator.device)
                 bs = clean_images.shape[0]
+
+                # sample a random timestep for each image
                 timesteps = torch.randint(0, self.config.num_train_timesteps, (bs,), device=clean_images.device)
 
+                # add noise to the clean images according to the noise magnitude at each timestep
+                # (this is the forward diffusion process)
                 noisy_images, noise = self.add_noise(clean_images, timesteps)
 
                 with self.accelerator.accumulate(self.model):
+                    # predict the noise residual from the noisy images
                     noise_pred = self.model(noisy_images, timesteps, return_dict=False)[0]
                     loss = F.mse_loss(noise_pred, noise)
                     self.accelerator.backward(loss)
+
+                    # gradient clipping and optimization step
                     self.accelerator.clip_grad_norm_(self.model.parameters(), 1.0)
                     self.optimizer.step()
                     self.lr_scheduler.step()
+
+                    # reset gradients for the next step
                     self.optimizer.zero_grad()
 
+                # update progress bar and log the current loss and learning rate
                 metrics = {"loss": loss.detach().item(), "lr": self.lr_scheduler.get_last_lr()[0]}
                 wandb.log(metrics, step=global_step)
                 progress_bar.update(1)
@@ -143,7 +153,12 @@ class Trainer:
 
             if self.accelerator.is_main_process:
                 pipeline = DDPMPipeline(unet=self.accelerator.unwrap_model(self.model), scheduler=self.noise_scheduler)
+
+                # evaluate and save images
                 if (epoch + 1) % self.config.save_image_epochs == 0 or epoch == self.config.num_epochs - 1:
                     self.evaluate(epoch, pipeline)
+
+                # save the model checkpoint
                 if (epoch + 1) % self.config.save_model_epochs == 0 or epoch == self.config.num_epochs - 1:
                     pipeline.save_pretrained(self.config.output_dir)
+                    pipeline.push_to_hub(self.config.huggingface_repo_name)

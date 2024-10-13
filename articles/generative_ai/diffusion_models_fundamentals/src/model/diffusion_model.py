@@ -1,4 +1,3 @@
-# diffusion_model.py
 from diffusers import UNet2DModel
 
 
