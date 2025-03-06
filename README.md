@@ -1,4 +1,4 @@
-![GitHub Banner](https://github.com/user-attachments/assets/ff15b0b3-8a2e-4db7-a324-7e60109092d9)
+[![Banner](https://github.com/user-attachments/assets/ff15b0b3-8a2e-4db7-a324-7e60109092d9)]([https://github.com/decodingml/articles-code](https://decodingml.substack.com/))
 
 # Decoding ML Articles Hub
 
